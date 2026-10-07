@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-demo
+  namespace: devops-demo
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: devops-demo
+
+  template:
+    metadata:
+      labels:
+        app: devops-demo
+
+    spec:
+      containers:
+        - name: devops-demo
+          image: narayanakl/devops-demo:1
+          ports:
+            - containerPort: 80
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
